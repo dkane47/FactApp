@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 const App = () => {
@@ -49,7 +48,7 @@ const App = () => {
         ...prevLogic,
         step: prevLogic.step + 1
       }));
-    } else if (logic.step >= 11 && logic.operation == 3) { //if finished first four rounds do harder mutliplication
+    } else if (logic.step >= 11 && logic.operation === 3) { //if finished first four rounds do harder mutliplication
       setLogic((prevLogic) => ({
         ...prevLogic,
         step: 0,
@@ -131,7 +130,7 @@ const App = () => {
     
     // generate second number randomly with some logic based on size
     let newNum2;
-    if (newNum1 == 0) {
+    if (newNum1 === 0) {
       newNum2 = Math.floor(Math.random() * 12);
     } else if (newNum1 <= 2) {
       newNum2 = Math.floor(Math.random() * 9 + 1);
@@ -142,7 +141,7 @@ const App = () => {
     }
     
     // if there is a held problem, set the problem to the held problem
-    if (holdData.hold && logic.step % 2 == 0) {
+    if (holdData.hold && logic.step % 2 === 0) {
       setProblem((prevProblem) => ({
         ...prevProblem,
         num1: holdData.held[0],
@@ -191,7 +190,7 @@ const App = () => {
     const ans = problem.num1 * problem.num2;
     //variable for correctness with conditional
     let correct;
-    if (logic.operation == 0 || logic.operation == 4) {
+    if (logic.operation === 0 || logic.operation === 4) {
       correct = problem.userAnswer == ans;
     } else {
       correct = problem.userAnswer == problem.num2;
@@ -211,7 +210,7 @@ const App = () => {
           generateProblem();
         } else if (tookMoreThanThreeSeconds && !displaySettings.switched) {//slow and analyzing mode
           targetedPractice();
-        } else if (tookMoreThanThreeSeconds && displaySettings.switched && logic.step % 2 == 0) {
+        } else if (tookMoreThanThreeSeconds && displaySettings.switched && logic.step % 2 === 0) {
           hold();
           generateProblem();
         } else {
@@ -233,7 +232,7 @@ const App = () => {
         ...prevSettings,
         switch: true
       }));
-      } else if (displaySettings.switched && logic.step % 2 == 0) {
+      } else if (displaySettings.switched && logic.step % 2 === 0) {
         hold();
       }
     }
